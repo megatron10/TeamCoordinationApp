@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Page</title>
+    </head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+    <div class="center">
+    <br><br>
+    <button id="member-login-btn" class="button1">Member Login</button>
+    </div>
+
+    <div id="id01" class="modal">
+        <form class="modal-content animate">
+            <div class="imgcontainer">
+                <span id="close-modal-btn" class="close" title="Close Modal">&times;</span>
+                <img src="../images/member_login.png" class="avatar">
+            </div>
+
+            <div class="container">
+                <input type="text" placeholder="Enter Username" id="usrname" required>
+
+                <input type="password" placeholder="Enter Password" id="pswrd" required>
+
+                <button id="login-btn" class="button1">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="../login.js"></script>
+
+</body>
+</html>
