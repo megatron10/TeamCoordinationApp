@@ -4,12 +4,18 @@ import websockets
 
 
 async def communicate(websocket, path):
-    data = await websocket.recv()
-    data = json.loads(data)
-    tosend = {"a": "b"}
-    tosend = json.dumps(tosend)
-    await websocket.send(tosend)
-
+    # await register(websocket) . update local variables new connection established.
+    
+    try:
+        async for message in websocket:
+            data = json.loads(message)
+            tosend = {"a": "b"}
+            tosend = json.dumps(tosend)
+            await websocket.send(tosend)
+    
+    finally:
+        pass
+        # await unregister(websocket). update local variables, connection broken.
 
 def main():
     start_server = websockets.serve(communicate, "localhost", 8765)
