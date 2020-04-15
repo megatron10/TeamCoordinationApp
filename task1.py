@@ -28,7 +28,7 @@ async def communicate(websocket, path):
             # print('sid ', data['sid'], 'asked for messages on channel', data['channel'])
             var = await check_valid_sid(data['uid'], data['sid'])
             
-            print(var)
+            # print(var)
             if not var:
                 await websocket.close()
                 break
