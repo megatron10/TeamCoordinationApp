@@ -1,13 +1,8 @@
 import json
 import asyncio
 import websockets
-
+from utils import check_valid_sid
 # person info endpoint
-
-
-def check_valid_sid(uid, sid):
-    #  TODO
-    return True
 
 
 def get_person_info(uid):
