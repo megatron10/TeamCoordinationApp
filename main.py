@@ -1,47 +1,48 @@
 import os
 import multiprocessing
+START = 9000
 
 
 def process1():
     from task1 import main
 
     print("ID of process running process1: {}".format(os.getpid()))
-    main()
+    main(START+1)
 
 
 def process2():
     from task2 import main
 
     print("ID of process running process2: {}".format(os.getpid()))
-    main()
+    main(START+2)
 
 
 def process3():
     from task3 import main
 
     print("ID of process running process3: {}".format(os.getpid()))
-    main()
+    main(START+3)
 
 
 def process4():
     from task4 import main
 
     print("ID of process running process4: {}".format(os.getpid()))
-    main()
+    main(START+4)
 
 
 def process5():
     from task5 import main
 
     print("ID of process running process5: {}".format(os.getpid()))
-    main()
+    main(START+5)
 
 
 def process6():
     from task6 import main
 
     print("ID of process running process6: {}".format(os.getpid()))
-    main()
+    main(START+6)
 
 
 if __name__ == "__main__":

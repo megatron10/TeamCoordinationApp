@@ -84,8 +84,8 @@ async def communicate(websocket, path):
     finally:
         unregister(websocket)
 
-def main():
-    start_server = websockets.serve(communicate, "localhost", 8765)
+def main(port=9003):
+    start_server = websockets.serve(communicate, "localhost", port)
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
 
