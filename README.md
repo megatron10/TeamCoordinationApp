@@ -1,10 +1,13 @@
 # Setup
 
-cd network_eectron
+```
+cd computer-networks
 npm install
 npm start
+```
 
 ## Fake Login Details
 
-Username == 'bill' 
+Username == 'bill'
+
 Password == 'cosby'
