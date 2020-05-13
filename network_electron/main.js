@@ -1,6 +1,6 @@
-console.log('main process wokign ');
+console.log('main process woking ');
 
-const { BrowserWindow,app } = require('electron');
+const { BrowserWindow, app } = require('electron');
 const path = require("path");
 const url = require("url");
 
@@ -10,18 +10,15 @@ let win;
 function createWindow() {
     winone = new BrowserWindow({
         width: 800,
-        height: 720,
+        height: 720, 
         webPreferences: {
             nativeWindowOpen: true,
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         },
     });
     
-    winone.loadURL(url.format({
-        pathname: path.join(__dirname, 'html/index.html'),
-        protocol: 'file',
-        slashes: true 
-    }));
+    winone.loadURL(`file://${__dirname}/html/login.html`);
     
     // winone.webContents.openDevTools();
     
