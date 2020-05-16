@@ -15,6 +15,9 @@ function setfocus(channelname){
   }
   content[channelname].style.display = "block";
   currentsel = channelname
+  span = '<span class="glyphicon glyphicon-comment"></span>'
+  document.getElementById('topheading').innerHTML = span +
+    ' Messages for ' + channelname; 
 
 }
 
