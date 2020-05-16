@@ -6,12 +6,19 @@ from utils import check_valid_sid
 
 
 def get_person_info(uid):
-    #  TODO get person info
+    conn = sqlite3.connect('/tmp/data.db')
+    c = conn.cursor()
+    c.execute("""SELECT username, display FROM users WHERE username=:name""", {'name':uid})
+    res = c.fetchone()
+    if len(res) == 0:
+        res = ['', '']
     info = {
-        "username": "dhanno",
-        "display-name": "Dhananjay Raut",
+        "username": res[0],
+        "display-name": res[1],
         "icon_link": ""
     }
+    conn.commit()
+    conn.close()
     return info
 
 

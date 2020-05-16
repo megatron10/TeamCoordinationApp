@@ -6,9 +6,14 @@ from utils import check_valid_sid
 
 
 def get_list_of_channels(uid):
-    #  TODO get channel list for user uid
-    channel_list = [f"#channel-{i}" for i in range(10)]
+    conn = sqlite3.connect('/tmp/data.db')
+    c = conn.cursor()
+    c.execute("""SELECT channelname FROM members WHERE username=:name""", {'name':uid})
+    channel_list = [i[0] for i in c.fetchall()]
+    conn.commit()
+    conn.close()
     return channel_list
+
 
 
 async def communicate(websocket, path):
