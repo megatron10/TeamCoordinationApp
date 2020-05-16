@@ -2,6 +2,7 @@ var content = {}; // channel name to message list dict
 var currentsel = ""
 let uid = localStorage.getItem('uid');
 let sid = localStorage.getItem('sid');
+onlines = new Set()
 
 function setfocus(channelname){
 
@@ -60,7 +61,7 @@ function getmsg(channel) {
 
 function chonclick(element) {
   //console.log();
-  setfocus(element.children[0].textContent)
+  setfocus(element.children[0].textContent);
 }
 
 function getchannels() {
@@ -107,4 +108,40 @@ function getchannels() {
   // };
 }
 
+function sendMessage() {
+    message = document.getElementById('inpmsg').value;
+    // send message to currentsel channel
+    document.getElementById('inpmsg').value = "";
+}
+
 getchannels()
+
+let onlinesocket = new WebSocket("ws://localhost:9002");
+
+  onlinesocket.onopen = function(e) {
+    data = {'uid': uid, 'sid': sid, 'action': 'connect'}
+    onlinesocket.send(JSON.stringify(data));
+  };
+  
+  onlinesocket.onmessage = function(event) {
+    
+    onlinelist = JSON.parse(event.data)['list']
+    for (var i = 0; i < onlinelist.length; i++) {
+       onlines.add(onlinelist[i])
+    }
+    // content[channellist[0]].style.display = "block";
+    // currentsel = channellist[0]
+  };
+  
+  // onlinesocket.onclose = function(event) {
+  //   if (event.wasClean) {
+  //     console.log(`[close] Connection closed cleanly,
+  //     code=${event.code} reason=${event.reason}`);
+  //   } else {
+  //     console.log('[close] Connection died');
+  //   }
+  // };
+  
+  // onlinesocket.onerror = function(error) {
+  //   console.log(`[error] ${error.message}`);
+  // };
