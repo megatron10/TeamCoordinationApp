@@ -2,6 +2,7 @@ import json
 import asyncio
 import websockets
 from utils import check_valid_sid
+import sqlite3
 # channel list endpoint
 
 
