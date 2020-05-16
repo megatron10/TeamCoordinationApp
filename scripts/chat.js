@@ -24,8 +24,8 @@ function absolute(base, relative) {
 }
 
 
-function createLoginObject(username, password) {
-    return JSON.stringify({ 'username': username, 'transformed_password': password })
+function createChattingObject(uid, sid, action, request) {
+    return JSON.stringify({ 'uid': uid, 'sid': sid, 'action':action, 'request':request })
 }
 
 function parseLoginResponse(response) {
