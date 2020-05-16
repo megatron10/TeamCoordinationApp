@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Socket.io chat room</title>
+    <title>chat room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
@@ -10,7 +10,7 @@
     <div id="app" class="container">
 
         <!--Only show before user logged in-->
-        <div class="row" v-show="!userLoggedIn">
+        <!-- <div class="row" v-show="!userLoggedIn">
             <div class="col-md-6 col-md-offset-3">
                 <form action="" name="loginForm" v-on:submit.prevent="">
                     <div class="row">
@@ -23,7 +23,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
 
         <div class="row well" style="min-height: 500px;" v-show="userLoggedIn">
 
@@ -31,7 +31,7 @@
             <div class="col-md-3">
                 <div class="panel panel-primary">
                     <div class="panel-heading" id="userListHeading">
-                        <span class="glyphicon glyphicon-user"></span> Online Users
+                        <span class="glyphicon glyphicon-user"></span> Channels
                         <div class="btn-group pull-right">
                             <a type="button" class="btn btn-default btn-xs" data-toggle="collapse"  href="#userListBody">
                                 <span class="glyphicon glyphicon-chevron-down"></span>
@@ -39,8 +39,8 @@
                         </div>
                     </div>
                     <div class="panel-body collapse in" id="userListBody" style="height:355px; overflow-y: auto;">
-                        <ul class="list-group">
-                            <li style="text-align: center;" class="list-group-item" v-for="user in userList">{{user}}</li>
+                        <ul class="list-group" id='channel-list'>
+                            <!-- <li style="text-align: center;" class="list-group-item">{{user}}</li> -->
                         </ul>
                     </div>
                 </div>
@@ -71,10 +71,10 @@
         </div>
 
     </div>
-    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script>
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/vue/dist/vue.js"></script>
-    <script src="./app.js"></script>
+    <script src="/vue/dist/vue.js"></script> -->
+    <script src="../app.js"></script>
 </body>
 </html>

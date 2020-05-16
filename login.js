@@ -32,15 +32,58 @@ function absolute(base, relative) {
     return stack.join("/");
 }
 
-function check(username, password)
-{
-    if (username == 'bill' && password == 'cosby')
-    {
-        loc = absolute(absFileLoc("login.js"), "html/chat.html")
-        location.replace(loc);
-    }
-    else
-    {
-        alert("unauthenticated");
-    }    
+//function check(username, password)
+//{
+//    document.cookie = "username=John Smith; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/";
+//    if (username == 'bill' && password == 'cosby')
+//    {
+//        loc = absolute(absFileLoc("login.js"), "html/chat.html")
+//        location.replace(loc);
+//    }
+//    else
+//    {
+//        alert("unauthenticated");
+//    }
+//}
+
+function check(username, password){
+    let socket = new WebSocket("ws://127.0.0.1:9006");
+    var data = {'username':username, 'transformed_password': password}
+    socket.onopen = function(e) {
+      //alert("[open] Connection established");
+      //alert("Sending to server");
+      socket.send(JSON.stringify(data)); 
+      console.log(data);
+        //socket.send("My name is John");
+    };
+
+    socket.onmessage = function(event) {
+      data = JSON.parse(event.data)
+      console.log(`[message] Data received from server: ${event.data}`);
+      if (data['status'] == 1)
+      {
+         cookie =  {'sid':data['sid'], 'uid':username}
+         // TODO cookie
+         loc = absolute(absFileLoc("login.js"), "html/chat.html")
+         location.replace(loc);
+      }
+      else
+      {
+         alert("unauthenticated");
+      }
+    };
+
+    socket.onclose = function(event) {
+      if (event.wasClean) {
+        alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+      } else {
+        // e.g. server process killed or network down
+        // event.code is usually 1006 in this case
+        alert('[close] Connection died');
+      }
+    };
+
+    socket.onerror = function(error) {
+      alert(`[error] ${error.message}`);
+    };
 }
