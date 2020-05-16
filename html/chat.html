@@ -52,10 +52,12 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading"><span class="glyphicon glyphicon-comment"></span> Messages</div>
                     <div class="panel-body" style="height:300px; overflow-y: auto;">
-                        <ul id="messages" class="list-group">
+                        <div id='msg-box'>
+                        <!-- <ul id="messages" class="list-group"> -->
                             <!--chat message history-->
-                            <li v-for="data in messagesHist" class="list-group-item"><span style="font-weight: bold;">{{data.userName}}</span> : {{data.message}}</li>
-                        </ul>
+                            <!-- <li v-for="data in messagesHist" class="list-group-item"><span style="font-weight: bold;">{{data.userName}}</span> : {{data.message}}</li> -->
+                        <!-- </ul> -->
+                        </div>
                     </div>
                 </div>
                 <form action="" name="messageForm" v-on:submit.prevent="sendMessage(message)">
