@@ -13,9 +13,9 @@ async def get_messages_from_channel(uid, sid, channel):
     conn = sqlite3.connect("/tmp/data.db")
     c = conn.cursor()
     c.execute(
-        "SELECT * FROM " + channel + " ORDER BY time DESC LIMIT 1;"
+        "SELECT * FROM " + channel + " ORDER BY time DESC LIMIT 10;"
     )
-    ls = c.featchall()
+    ls = c.fetchall()
     conn.commit()
     conn.close()
     return ls
@@ -47,7 +47,7 @@ async def communicate(websocket, path):
             # print(data['sid'], 'got its messages')
             # print(f"ended at {time.strftime('%X')}")
 
-            tosend = {"ret": repr(msgs)}
+            tosend = {"ret": msgs}
             tosend = json.dumps(tosend)
             await websocket.send(tosend)
 
