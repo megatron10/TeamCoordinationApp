@@ -47,7 +47,9 @@
             <div class="col-md-9">
 
                 <div class="panel panel-primary">
-                    <div class="panel-heading"><span class="glyphicon glyphicon-comment"></span> Messages</div>
+                    <div id='topheading' class="panel-heading"><span class="glyphicon glyphicon-comment"></span> Messages
+                        
+                    </div>
                     <div class="panel-body" style="height:300px; overflow-y: auto;">
                         <div id='msg-box'>
                         <!-- <ul id="messages" class="list-group"> -->
@@ -59,9 +61,10 @@
                 </div>
                 <form action="" name="messageForm" v-on:submit.prevent="sendMessage(message)">
                     <div class="input-group">
-                        <input class="form-control" type="text" autocomplete="off" v-model="message" placeholder="Type your message here" />
+                        <input id='inpmsg' class="form-control" type="text" autocomplete="off" v-model="message" placeholder="Type your message here" />
                         <div class="input-group-btn">
-                            <button class="btn btn-primary" type="button" @click="sendMessage(message)">Send</button>
+                            <button class="btn btn-primary" type="button" onclick="sendMessage()">Send</button>
+                            <!-- <button class="btn btn-primary" type="button" @click="sendMessage(message)">Send</button> -->
                         </div>
                     </div>
                 </form>
