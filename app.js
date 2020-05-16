@@ -1,6 +1,5 @@
 var content = {}; // channel name to message list dict
 var currentsel = ""
-
 let uid = localStorage.getItem('uid');
 let sid = localStorage.getItem('sid');
 
