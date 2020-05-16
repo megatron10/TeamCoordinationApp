@@ -1,5 +1,5 @@
 {
-    "name": "CN2-Project",
+    "name": "cn2-project",
     "version": "1.0.0",
     "main": "main.js",
     "devDependencies": {
