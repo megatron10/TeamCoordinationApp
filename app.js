@@ -1,6 +1,9 @@
 alert("hi");
-let channelsocket = new WebSocket("ws://localhost:9005");
 
+var content = {}; // channel name to message list dict
+
+
+let channelsocket = new WebSocket("ws://localhost:9005");
 channelsocket.onopen = function(e) {
   console.log("[open] Connection established");
   console.log("Sending to server");
@@ -13,6 +16,7 @@ channelsocket.onmessage = function(event) {
   channellist = JSON.parse(event.data)['list']
   console.log(channellist)
   for (var i = 0; i < channellist.length; i++) {
+    content[channellist[i]] = []
     var node = document.createElement("LI");
     var textnode = document.createTextNode(channellist[i]); 
     node.appendChild(textnode);
@@ -20,6 +24,7 @@ channelsocket.onmessage = function(event) {
     node.setAttribute("class", "list-group-item");
     document.getElementById("channel-list").appendChild(node);
 }
+  console.log(content);
 };
 
 channelsocket.onclose = function(event) {
