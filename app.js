@@ -2,6 +2,8 @@ alert("hi");
 
 var content = {}; // channel name to message list dict
 
+let uid = localStorage.getItem('uid');
+let sid = localStorage.getItem('sid');
 
 let channelsocket = new WebSocket("ws://localhost:9005");
 channelsocket.onopen = function(e) {
