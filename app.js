@@ -1,9 +1,17 @@
 var content = {}; // channel name to message list dict
 var currentsel = ""
 
+let uid = localStorage.getItem('uid');
+let sid = localStorage.getItem('sid');
+
 function setfocus(channelname){
-  if (currentsel != ""){
-    content[channelname].style.display = "hidden";
+
+  console.log(currentsel);
+  if (currentsel === ""){
+    //pass
+  }
+  else {
+    content[currentsel].style.display = "none";
   }
   content[channelname].style.display = "block";
   currentsel = channelname
@@ -29,7 +37,7 @@ function getmsg(channel) {
   let socket = new WebSocket("ws://localhost:9001");
   socket.onopen = function(e) {
     // TODO update uid and sid
-    data = {'uid': 'dhananjay', 'sid': 'asdasd', 'channel':channel}
+    data = {'uid': uid, 'sid': sid, 'channel':channel}
     socket.send(JSON.stringify(data));
   };
 
@@ -51,11 +59,16 @@ function getmsg(channel) {
   // };
 }
 
+function chonclick(element) {
+  //console.log();
+  setfocus(element.children[0].textContent)
+}
+
 function getchannels() {
   let channelsocket = new WebSocket("ws://localhost:9005");
 
   channelsocket.onopen = function(e) {
-    data = {'uid': 'dhananjay', 'sid': 'asdasd'}
+    data = {'uid': uid, 'sid': sid}
     channelsocket.send(JSON.stringify(data));
   };
   
@@ -64,12 +77,15 @@ function getchannels() {
     channellist = JSON.parse(event.data)['list']
     for (var i = 0; i < channellist.length; i++) {
       content[channellist[i]] = []
+      var button = document.createElement('button')
       var node = document.createElement("LI");
       var textnode = document.createTextNode(channellist[i]); 
       node.appendChild(textnode);
       node.setAttribute("style", "text-align: center;");
       node.setAttribute("class", "list-group-item");
-      document.getElementById("channel-list").appendChild(node);
+      button.appendChild(node)
+      button.setAttribute('onclick', 'chonclick(this)')
+      document.getElementById("channel-list").appendChild(button);
       getmsg(channellist[i])
       document.getElementById("msg-box").appendChild(content[channellist[i]]);
     }
