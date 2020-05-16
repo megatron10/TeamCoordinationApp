@@ -1,10 +1,10 @@
-// let loginBtn = document.getElementById("login-btn");
+// let ChatRoomBtn = document.getElementById("ChatRoom-btn");
 
-// loginBtn.addEventListener("click", function () {
+// ChatRoomBtn.addEventListener("click", function () {
 //     let username = document.getElementById("usrname").value;
 //     let password = document.getElementById("pswrd").value;
 
-//     login(username, password);
+//     ChatRoom(username, password);
 // });
 
 let uid = localStorage.getItem('uid');
@@ -23,31 +23,35 @@ function createChattingObject(uid, sid, channel, action, message) {
 
 
 conn.onopen = function (ev) {
-    console.log("[login] Connection established with authenticator");
+    console.log("[ChatRoom] Connection established with ChatRoom");
     // Creating a connect query
-    // createChattingObject(uid, sid, )
+    createChattingObject(uid, sid, "channelX", "connect", "messageNull");
+    console.log("[ChatRoom] Sent connect for initial connection");
 
-    // let loginObject = createLoginObject(username, password);
-    // console.log("[login] Sending login credentials");
-    // conn.send(loginObject);
-    // console.log("[login] Credential sent");
+    // let ChatRoomObject = createChatRoomObject(username, password);
+    // console.log("[ChatRoom] Sending ChatRoom credentials");
+    // conn.send(ChatRoomObject);
+    // console.log("[ChatRoom] Credential sent");
 }
 
-conn.onmessage = function (ev) {
-    console.debug("[login] Message received from authenticator", ev);
 
-    // let response = parseLoginResponse(ev.data);
+conn.onmessage = function (ev) {
+    console.debug("[ChatRoom] Message received from authenticator", ev);
+
+    // Updating channel with the message
+    
+    // let response = parseChatRoomResponse(ev.data);
     // // Case when credentials are wrong
     // if (response['status'] == 0) {
     //     ///TODO: Invalid credentials
-    //     console.debug("[login] Invalid Credentials");
+    //     console.debug("[ChatRoom] Invalid Credentials");
     // }
     // else {
     //     localStorage.setItem('uid', username);
     //     localStorage.setItem('sid', response['sid']);
-    //     console.debug('[login] Login successful, saving cookie');
+    //     console.debug('[ChatRoom] ChatRoom successful, saving cookie');
 
-    // console.log("[login] Closing connection with authenticator");
+    // console.log("[ChatRoom] Closing connection with authenticator");
     // conn.close();
 
     // Promoting to user's page
@@ -57,12 +61,12 @@ conn.onmessage = function (ev) {
 }
 
 conn.onerror = function (ev) {
-    console.error("[login] WebSocket error observed:", ev);
-    console.error("[login] Server endpoint is down or inactive");
+    console.error("[ChatRoom] WebSocket error observed:", ev);
+    console.error("[ChatRoom] Server endpoint is down or inactive");
 }
 
 conn.onclose = function (ev) {
-    console.log("[login] WebSocket is closed now.", ev);
+    console.log("[ChatRoom] WebSocket is closed now.", ev);
 }
 
 
@@ -92,39 +96,39 @@ function parseChattingResponse(response) {
 }
 
 function registerForUpdate() {
-    console.log("[login] Making logging request");
+    console.log("[ChatRoom] Making logging request");
     let conn;
     try {
         conn = getChattingConnection();
     } catch (e) {
-        console.error("[login] Security Error", e);
+        console.error("[ChatRoom] Security Error", e);
     }
 
     conn.onopen = function (ev) {
-        console.log("[login] Connection established with authenticator");
+        console.log("[ChatRoom] Connection established with authenticator");
         // Creating a connect query
 
-        // let loginObject = createLoginObject(username, password);
-        // console.log("[login] Sending login credentials");
-        // conn.send(loginObject);
-        // console.log("[login] Credential sent");
+        // let ChatRoomObject = createChatRoomObject(username, password);
+        // console.log("[ChatRoom] Sending ChatRoom credentials");
+        // conn.send(ChatRoomObject);
+        // console.log("[ChatRoom] Credential sent");
     }
 
     conn.onmessage = function (ev) {
-        console.debug("[login] Message received from authenticator", ev);
+        console.debug("[ChatRoom] Message received from authenticator", ev);
 
-        // let response = parseLoginResponse(ev.data);
+        // let response = parseChatRoomResponse(ev.data);
         // // Case when credentials are wrong
         // if (response['status'] == 0) {
         //     ///TODO: Invalid credentials
-        //     console.debug("[login] Invalid Credentials");
+        //     console.debug("[ChatRoom] Invalid Credentials");
         // }
         // else {
         //     localStorage.setItem('uid', username);
         //     localStorage.setItem('sid', response['sid']);
-        //     console.debug('[login] Login successful, saving cookie');
+        //     console.debug('[ChatRoom] ChatRoom successful, saving cookie');
 
-            // console.log("[login] Closing connection with authenticator");
+            // console.log("[ChatRoom] Closing connection with authenticator");
             // conn.close();
 
             // Promoting to user's page
@@ -134,12 +138,12 @@ function registerForUpdate() {
     }
 
     conn.onerror = function (ev) {
-        console.error("[login] WebSocket error observed:", ev);
-        console.error("[login] Server endpoint is down or inactive");
+        console.error("[ChatRoom] WebSocket error observed:", ev);
+        console.error("[ChatRoom] Server endpoint is down or inactive");
     }
 
     conn.onclose = function (ev) {
-        console.log("[login] WebSocket is closed now.", ev);
+        console.log("[ChatRoom] WebSocket is closed now.", ev);
     }
 
 }
