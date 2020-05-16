@@ -8,6 +8,6 @@ npm start
 
 ## Fake Login Details
 
-Username == 'bill'
+Username == 'dhananjay'
 
-Password == 'cosby'
+Password == 'passdhananjay'
