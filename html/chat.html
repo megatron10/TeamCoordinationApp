@@ -5,6 +5,7 @@
     <title>chat room</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
 </head>
 <body style="margin-top: 10px;">
     <div id="app" class="container">
@@ -32,11 +33,6 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading" id="userListHeading">
                         <span class="glyphicon glyphicon-user"></span> Channels
-                        <div class="btn-group pull-right">
-                            <a type="button" class="btn btn-default btn-xs" data-toggle="collapse"  href="#userListBody">
-                                <span class="glyphicon glyphicon-chevron-down"></span>
-                            </a>
-                        </div>
                     </div>
                     <div class="panel-body collapse in" id="userListBody" style="height:355px; overflow-y: auto;">
                         <ul class="list-group" id='channel-list'>
