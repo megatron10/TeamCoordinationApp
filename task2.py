@@ -85,7 +85,6 @@ async def communicate(websocket, path):
     try:
         async for message in websocket:
             data = json.loads(message)
-
             # invalid session id
             if not check_valid_sid(data["uid"], data["sid"]):
                 print("problem")
@@ -103,7 +102,7 @@ async def communicate(websocket, path):
         await unregister(websocket)
 
 
-def main(port=9003):
+def main(port=9002):
     start_server = websockets.serve(communicate, "localhost", port)
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()

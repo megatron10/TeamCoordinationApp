@@ -35,7 +35,7 @@ def get_users_in_channel(channel):
 
 
 async def send_message_to_users(data):
-    await asyncio.sleep(0.5)
+    # await asyncio.sleep(0.5)
     # ls = await query the db for list of online UIDs for the channel
     users_in_channel = set(get_users_in_channel(data["channel"]))
     onlines = users_in_channel.intersection(online_uids)
@@ -119,7 +119,7 @@ async def communicate(websocket, path):
 
             # send a message
             elif data["action"] == "send":
-                if await is_valid_send_request(data["uid"], data["channel"]):
+                if is_valid_send_request(data["uid"], data["channel"]):
                     await send_message_to_users(data)
                     add_message_to_channel(
                         data["uid"], data["message"], data["channel"]
