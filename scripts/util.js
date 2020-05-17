@@ -7,4 +7,9 @@ function getAuthenticatorConnection() {
     return (new WebSocket(authenticator_host + ":" + authenticator_port));
 }
 
-// var 
+var chatting_host = "ws://127.0.0.1";
+var chatting_post = "9003";
+
+function getChattingConnection() {
+    return (new WebSocket(chatting_host + ":" + chatting_post));
+}
