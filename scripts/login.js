@@ -64,7 +64,7 @@ function login(username, password){
             console.debug('[login] Login successful, saving cookie');
 
             console.log("[login] Closing connection with authenticator");
-            conn.close();
+            conn.close(1000, "Deliberate disconnection");
 
             // Promoting to user's page
             let loc = absolute(window.location.href, "chat.html");
