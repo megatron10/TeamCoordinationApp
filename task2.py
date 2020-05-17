@@ -85,7 +85,6 @@ async def communicate(websocket, path):
     try:
         async for message in websocket:
             data = json.loads(message)
-
             # invalid session id
             if not check_valid_sid(data["uid"], data["sid"]):
                 print("problem")
