@@ -45,5 +45,9 @@ and passwords for them are "pass"+username
 
 * **Anjani Kumar** - [Github](https://github.com/anjani-1)  
 * **Dhananjay Raut** - [Github](https://github.com/dhananjayraut)
-
-
+* **Deeptanshu Sankhwar** - [Github](https://github.com/Deeptanshu-sankhwar)
+* **Sahil Shah** - [Github](https://github.com/megatron10/)
+* **Vijay Tadikamalla** - [Github](https://github.com/vijayphoenix)
+* **Anupam Saini** - [Github](https://github.com/anupamsaini98)
+* **Tungadri Mandal**
+* **Jatin Sharma**
