@@ -46,7 +46,7 @@ function getmsg(channel) {
 
   socket.onmessage = function(event) {
     msglist = JSON.parse(event.data)['ret']
-    for (var i = 0; i < msglist.length; i++) {
+    for (var i = msglist.length -1 ; i >=0 ; i--) {
       console.log(msglist[i])
       content[channel].appendChild(packagemsg(msglist[i][0], msglist[i][1]));
     }
