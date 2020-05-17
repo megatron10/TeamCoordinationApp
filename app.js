@@ -6,7 +6,7 @@ onlines = new Set()
 
 function setfocus(channelname){
 
-  console.log(currentsel);
+  //console.log(currentsel);
   if (currentsel === ""){
     //pass
   }
@@ -20,9 +20,22 @@ function setfocus(channelname){
     ' Messages for ' + channelname; 
 
 }
+function hover(element) {
+  username = element.innerHTML.split(" ")[0]
+  if (onlines.has(username)){
+    status = username+' is online'
+  }
+  else {
+    status = username + ' is offline'
+  }
+  element.setAttribute('title', 
+  status + ' and this message was sent at '+ element.getAttribute('data-time'));
+}
 
-function packagemsg(by, msg){
+function packagemsg(by, msg, on){
   var node = document.createElement("LI");
+  node.setAttribute('onmouseover', 'hover(this)')
+  node.setAttribute('data-time', on);
   var textnode = document.createTextNode(by + ' : '+ msg); 
   node.appendChild(textnode);
   node.setAttribute("class", "list-group-item");
@@ -47,8 +60,7 @@ function getmsg(channel) {
   socket.onmessage = function(event) {
     msglist = JSON.parse(event.data)['ret']
     for (var i = 0; i < msglist.length; i++) {
-      console.log(msglist[i])
-      content[channel].appendChild(packagemsg(msglist[i][0], msglist[i][1]));
+      content[channel].appendChild(packagemsg(msglist[i][0], msglist[i][1], msglist[i][2]));
     }
   };
 
@@ -119,32 +131,33 @@ function sendMessage() {
 
 getchannels()
 
+
 let onlinesocket = new WebSocket("ws://localhost:9002");
+onlines.add(uid)
 
   onlinesocket.onopen = function(e) {
     data = {'uid': uid, 'sid': sid, 'action': 'connect'}
+    console.log(data)
     onlinesocket.send(JSON.stringify(data));
   };
   
   onlinesocket.onmessage = function(event) {
-    
-    onlinelist = JSON.parse(event.data)['list']
-    for (var i = 0; i < onlinelist.length; i++) {
-       onlines.add(onlinelist[i])
+    data =  JSON.parse(event.data)
+    console.log(data)
+    if (data['action'] === 'list'){
+      onlinelist = data['message']
+      console.log(onlinelist)
+      for (var i = 0; i < onlinelist.length; i++) {
+        console.log('online '+ onlinelist[i]);
+        onlines.add(onlinelist[i]);
+      }
     }
-    // content[channellist[0]].style.display = "block";
-    // currentsel = channellist[0]
+    if(data['action'] === 'update') {
+      if (data['status'] === 'offline'){
+        onlines.delete(data['uid'])
+      }
+      if (data['status'] === 'online'){
+         onlines.add(data['uid'])
+      }
+    }
   };
-  
-  // onlinesocket.onclose = function(event) {
-  //   if (event.wasClean) {
-  //     console.log(`[close] Connection closed cleanly,
-  //     code=${event.code} reason=${event.reason}`);
-  //   } else {
-  //     console.log('[close] Connection died');
-  //   }
-  // };
-  
-  // onlinesocket.onerror = function(error) {
-  //   console.log(`[error] ${error.message}`);
-  // };
