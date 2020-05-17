@@ -1,102 +1,4 @@
-// let ChatRoomBtn = document.getElementById("ChatRoom-btn");
-
-// ChatRoomBtn.addEventListener("click", function () {
-//     let username = document.getElementById("usrname").value;
-//     let password = document.getElementById("pswrd").value;
-
-//     ChatRoom(username, password);
-// });
-
-let uid = localStorage.getItem('uid');
-let sid = localStorage.getItem('sid');
-let conn;
-try {
-    conn = getChattingConnection();
-} catch (e) {
-    console.error("[ChatRoom] Security Error", e);
-}
-
-function createChattingObject(uid, sid, channel, action, message) {
-    return JSON.stringify({ 'uid': uid, 'sid': sid, 'channel': channel, 'action': action, 'message': message })
-}
-
-
-
-conn.onopen = function (ev) {
-    console.log("[ChatRoom] Connection established with ChatRoom");
-    // Creating a connect query
-    createChattingObject(uid, sid, "channelX", "connect", "messageNull");
-    console.log("[ChatRoom] Sent connect for initial connection");
-
-    // let ChatRoomObject = createChatRoomObject(username, password);
-    // console.log("[ChatRoom] Sending ChatRoom credentials");
-    // conn.send(ChatRoomObject);
-    // console.log("[ChatRoom] Credential sent");
-}
-
-
-conn.onmessage = function (ev) {
-    console.debug("[ChatRoom] Message received from authenticator", ev);
-
-    // Updating channel with the message
-    
-    // let response = parseChatRoomResponse(ev.data);
-    // // Case when credentials are wrong
-    // if (response['status'] == 0) {
-    //     ///TODO: Invalid credentials
-    //     console.debug("[ChatRoom] Invalid Credentials");
-    // }
-    // else {
-    //     localStorage.setItem('uid', username);
-    //     localStorage.setItem('sid', response['sid']);
-    //     console.debug('[ChatRoom] ChatRoom successful, saving cookie');
-
-    // console.log("[ChatRoom] Closing connection with authenticator");
-    // conn.close();
-
-    // Promoting to user's page
-    // let loc = absolute(window.location.href, "chat.html");
-    // location.assign(loc);
-    // }
-}
-
-conn.onerror = function (ev) {
-    console.error("[ChatRoom] WebSocket error observed:", ev);
-    console.error("[ChatRoom] Server endpoint is down or inactive");
-}
-
-conn.onclose = function (ev) {
-    console.log("[ChatRoom] WebSocket is closed now.", ev);
-}
-
-
-
-function absolute(base, relative) {
-    let stack = base.split("/"),
-        parts = relative.split("/");
-    stack.pop(); // remove current file name (or empty string)
-    for (var i = 0; i < parts.length; i++) {
-        if (parts[i] == ".")
-            continue;
-        if (parts[i] == "..")
-            stack.pop();
-        else
-            stack.push(parts[i]);
-    }
-    return stack.join("/");
-}
-
-
-function createChattingObject(uid, sid, channel, action, message) {
-    return JSON.stringify({ 'uid': uid, 'sid': sid, 'channel': channel, 'action':action, 'message':message })
-}
-
-function parseChattingResponse(response) {
-    return JSON.parse(response);
-}
-
-function registerForUpdate() {
-    console.log("[ChatRoom] Making logging request");
+function chattingSystem() {
     let conn;
     try {
         conn = getChattingConnection();
@@ -104,37 +6,44 @@ function registerForUpdate() {
         console.error("[ChatRoom] Security Error", e);
     }
 
-    conn.onopen = function (ev) {
-        console.log("[ChatRoom] Connection established with authenticator");
-        // Creating a connect query
-
-        // let ChatRoomObject = createChatRoomObject(username, password);
-        // console.log("[ChatRoom] Sending ChatRoom credentials");
-        // conn.send(ChatRoomObject);
-        // console.log("[ChatRoom] Credential sent");
+    function createChattingObject(uid, sid, channel, action, message) {
+        return JSON.stringify({ 'uid': uid, 'sid': sid, 'channel': channel, 'action': action, 'message': message })
     }
 
+    function parseChattingResponse(response) {
+        return JSON.parse(response);
+    }
+
+
+    conn.onopen = function (ev) {
+        console.log("[ChatRoom] Connection established with ChatRoom");
+        // Creating a connect query
+        let uid = localStorage.getItem('uid');
+        let sid = localStorage.getItem('sid');
+
+        data = createChattingObject(uid, sid, "channel0", "connect", "messageNull");
+        conn.send(data);
+        console.log("[ChatRoom] Sent connect for initial connection");
+
+    }
+
+
+    let echoBack = true;
     conn.onmessage = function (ev) {
-        console.debug("[ChatRoom] Message received from authenticator", ev);
+        console.debug("[ChatRoom] Message received from Chat Server", ev);
+        if (echoBack) {
+            echoBack = false;
+            console.debug("[ChatRoom] Received echoBack", ev);
+        }
+        else {
+            response = parseChattingResponse(ev.data);
+            // Updating channel with the message
 
-        // let response = parseChatRoomResponse(ev.data);
-        // // Case when credentials are wrong
-        // if (response['status'] == 0) {
-        //     ///TODO: Invalid credentials
-        //     console.debug("[ChatRoom] Invalid Credentials");
-        // }
-        // else {
-        //     localStorage.setItem('uid', username);
-        //     localStorage.setItem('sid', response['sid']);
-        //     console.debug('[ChatRoom] ChatRoom successful, saving cookie');
+            content[response['channel']].appendChild(packagemsg(
+                response['from_uid'], response['message']
+            ));
 
-            // console.log("[ChatRoom] Closing connection with authenticator");
-            // conn.close();
-
-            // Promoting to user's page
-            // let loc = absolute(window.location.href, "chat.html");
-            // location.assign(loc);
-        // }
+        }
     }
 
     conn.onerror = function (ev) {
@@ -146,5 +55,22 @@ function registerForUpdate() {
         console.log("[ChatRoom] WebSocket is closed now.", ev);
     }
 
+    
+    let sendBtn = document.getElementById("send-button");
+    sendBtn.addEventListener("click", function () {
+        var input = document.getElementById("inpmsg");
+        var msg = input.value
+        console.log("[Chatroom] Send button fired", msg);
+        if(msg != "") {
+            console.log("[Chatroom] Sending message to server:", msg, "Channel:", currentsel);
+            content[currentsel].appendChild(packagemsg(
+                uid, msg
+            ));
+            data = createChattingObject(uid, sid, currentsel, "send", msg);
+            conn.send(data);
+            input.value = "";
+        }
+    });
 }
 
+chattingSystem();
