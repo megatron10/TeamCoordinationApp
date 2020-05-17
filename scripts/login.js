@@ -77,6 +77,20 @@ function login(username, password){
     conn.onclose = function(ev) {
         console.log("[login] WebSocket is closed now.", ev);
     }
-
 }
 
+document.getElementById("usrname")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("login-btn").click();
+    }
+});
+
+document.getElementById("pswrd")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("login-btn").click();
+    }
+});
