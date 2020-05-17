@@ -61,20 +61,12 @@ for i, j in users:
         {"username": i, "dpname": j, "pass": "pass" + i},
     )
 
-c.execute(
-        "INSERT INTO users VALUES (:username, :dpname, :pass)",
-        {"username": 'i', "dpname": 'i', "pass": 'i'},
-    )
-
-users.append(('i', 'i'))
-
 for ch in channels:
     for i, _ in users:
         if random.random() < 0.7:
             c.execute(
                 "INSERT INTO members VALUES (:username, :chname)",
                 {"username": i, "chname": ch},
-            
             )
             c.execute(
                 f"INSERT INTO {ch} VALUES (:username, :msg, :time)",
