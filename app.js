@@ -99,7 +99,7 @@ function getchannels() {
       node.setAttribute("style", "text-align: center;");
       node.setAttribute("class", "list-group-item");
       button.appendChild(node)
-      button.setAttribute("style", "display:block; cursor: pointer; border: none; width: 100%; background-color: #aed3f2; color: black; padding: 10px 24px; ")
+      button.setAttribute("style", "display:block; cursor: pointer; border: none; width: 100%; background-color: #cde4f7; color: black; padding: 10px 24px; ")
       button.setAttribute("onMouseOver", "this.style.color='#337AB7'")
       button.setAttribute("onMouseOut", "this.style.color='black'")
       button.setAttribute('onclick', 'chonclick(this)')
