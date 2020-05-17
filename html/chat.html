@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="" name="messageForm" v-on:submit.prevent="sendMessage(message)">
+                <form action="" name="messageForm" v-on:submit.prevent="sendMessage(message)" onSubmit="return false;">
                     <div class="input-group">
                         <input id='inpmsg' class="form-control" type="text" autocomplete="off" v-model="message" placeholder="Type your message here" />
                         <div class="input-group-btn">
