@@ -33,8 +33,10 @@ Follow the following steps to get the client up and running.
 
 
 ## Login info
-TODO:// What are login details and all.
-
+by default there are 9 users
+"dhananjay","sahil","vijay","anjani"
+,"jatin","anupam","tungadri","deeptanshu","phoenix"
+and passwords for them are "pass"+username
 
 ## Built With
 
@@ -44,6 +46,6 @@ TODO:// What are login details and all.
 ## Authors
 
 * **Anjani Kumar** - [Github](https://github.com/anjani-1)  
-TODO://Other contributors. 
+* **Dhananjay Raut** - [Github](https://github.com/dhananjayraut)
 
 
