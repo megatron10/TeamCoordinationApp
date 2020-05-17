@@ -47,6 +47,12 @@ users = [
     ("dhananjay", "Dhananjay Raut"),
     ("sahil", "Sahil Shah"),
     ("vijay", "Vijay Tadikamalla"),
+    ("anjani", "Anjani Kumar"),
+    ("jatin", "Jatin Shrama"),
+    ("anupam", "Anupam Saini"),
+    ("tungadri", "Tungadri Mandal"),
+    ("deeptanshu", "Deeptanshu Sankhwar"),
+    ("phoenix", "Phoenix Lord"),
 ]
 
 for i, j in users:
