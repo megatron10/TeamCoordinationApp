@@ -71,6 +71,15 @@ function chattingSystem() {
             input.value = "";
         }
     });
+
+
+    document.getElementById("inpmsg")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("send-button").click();
+    }
+    });
 }
 
 chattingSystem();
