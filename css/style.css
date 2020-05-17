@@ -17,7 +17,7 @@ body {
     position: relative;
     margin: 5% auto;
     width: 600px;
-    height: 400px;
+    height: 450px;
     background: #FFF;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -30,7 +30,7 @@ body {
     box-sizing: border-box;
     padding: 40px;
     width: 300px;
-    height: 400px;
+    height: 450px;
     font-weight: 10;
 }
 
@@ -97,7 +97,7 @@ input[type="checkbox"] {
 
 .or {
     position: absolute;
-    top: 180px;
+    top: 205px;
     left: 280px;
     width: 40px;
     height: 40px;
@@ -108,19 +108,24 @@ input[type="checkbox"] {
     text-align: center;
 }
 
-.right {
-    background-color: #333333;
+.rightback .right{
+    background-color: #252525;
     position: absolute;
     top: 0;
     right: 0;
     box-sizing: border-box;
     padding: 40px;
     width: 300px;
-    height: 400px;
-    /* background: url('https://goo.gl/YbktSj'); */
+    height: 450px;
     background-size: cover;
     background-position: center;
     border-radius: 0 2px 2px 0;
+}
+
+.right {
+    /* image src -  https://www.freepik.com/free-vector/kids-doodles_1075604.htm#page=1&query=fun%20pattern&position=22Copy%20%20Pinterest%20%20Facebook%20%20Twitter%20%20%20Download%2041k*/
+    background: url("../images/181.jpg");
+    background-blend-mode: multiply;
 }
 
 .right .loginwith {
@@ -132,6 +137,7 @@ input[type="checkbox"] {
 }
 
 button.social-signin {
+    margin-top: 15px;
     margin-bottom: 20px;
     width: 220px;
     height: 36px;
