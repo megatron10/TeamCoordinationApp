@@ -50,7 +50,7 @@ function getmsg(channel) {
   content[channel].setAttribute("class", "list-group");
   content[channel].style.display = "none";
 
-  let socket = new WebSocket("ws://localhost:9001");
+  let socket = getHistoryServiceConnection();
   socket.onopen = function(e) {
     // TODO update uid and sid
     data = {'uid': uid, 'sid': sid, 'channel':channel}
@@ -80,7 +80,7 @@ function chonclick(element) {
 }
 
 function getchannels() {
-  let channelsocket = new WebSocket("ws://localhost:9005");
+  let channelsocket = getChannelServiceConnection();
 
   channelsocket.onopen = function(e) {
     data = {'uid': uid, 'sid': sid}
@@ -132,7 +132,7 @@ function sendMessage() {
 getchannels()
 
 
-let onlinesocket = new WebSocket("ws://localhost:9002");
+let onlinesocket = getOnlineServiceConnection();
 onlines.add(uid)
 
   onlinesocket.onopen = function(e) {
