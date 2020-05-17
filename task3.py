@@ -95,10 +95,12 @@ def unregister(websocket):
 
 async def communicate(websocket, path):
     """
-    To the client, just populate uid, sid, channel, action and message fields in each request.
+    To the client, just populate uid, sid, channel, action and message fields
+    in each request.
     For first message use action = 'connect'
     To send messages use action = 'send'
-    You will be notified of incoming messages from this websocket after you have connected.
+    You will be notified of incoming messages from this websocket after you 
+    have connected.
     """
 
     try:

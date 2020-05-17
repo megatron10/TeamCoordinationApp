@@ -68,10 +68,12 @@ for ch in channels:
             c.execute(
                 "INSERT INTO members VALUES (:username, :chname)",
                 {"username": i, "chname": ch},
+            
             )
             c.execute(
                 f"INSERT INTO {ch} VALUES (:username, :msg, :time)",
-                {"username": i, "msg": "hi", "time": time.time()},
+                {"username": i, "msg": "hi from "+i+' to '+ch, 
+                "time": time.time()},
             )
 conn.commit()
 conn.close()

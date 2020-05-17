@@ -1,10 +1,15 @@
 # import random
 # import time
 import json
+import time
 import asyncio
 import websockets
 from utils import check_valid_sid
 import sqlite3
+
+
+def changedate(num):
+    return time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(num)))
 
 
 async def get_messages_from_channel(uid, sid, channel):
@@ -16,6 +21,7 @@ async def get_messages_from_channel(uid, sid, channel):
         "SELECT * FROM " + channel + " ORDER BY time DESC LIMIT 10;"
     )
     ls = c.fetchall()
+    ls = [(i, j, changedate(k)) for (i, j, k) in ls]
     conn.commit()
     conn.close()
     return ls

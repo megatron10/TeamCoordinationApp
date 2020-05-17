@@ -11,7 +11,7 @@ UID_to_USER = {}
 
 
 def inform_status_msg(uid, status):
-    return json.dumps({"from_uid": uid, "message": status})
+    return json.dumps({"action": 'update', "uid": uid, "status": status})
 
 
 async def send_online_contacts_list(websocket, uid):
@@ -21,7 +21,7 @@ async def send_online_contacts_list(websocket, uid):
     c.execute("""SELECT * FROM online""")
     ls = [i[0] for i in c.fetchall()]
     conn.close()
-    await websocket.send(json.dumps({"action": "list", "message": repr(ls)}))
+    await websocket.send(json.dumps({"action": "list", "message": ls}))
 
 
 async def inform_contacts(uid, status):
@@ -103,7 +103,7 @@ async def communicate(websocket, path):
         await unregister(websocket)
 
 
-def main(port=9003):
+def main(port=9002):
     start_server = websockets.serve(communicate, "localhost", port)
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
