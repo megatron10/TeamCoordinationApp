@@ -19,7 +19,7 @@ function createWindow() {
     });
     
     winone.loadURL(`file://${__dirname}/html/login.html`);
-    
+    winone.maximize()
     // winone.webContents.openDevTools();
     
     winone.on('closed', () => {
