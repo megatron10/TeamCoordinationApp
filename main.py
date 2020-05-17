@@ -1,48 +1,49 @@
 import os
 import multiprocessing
 START = 9000
+url = 'localhost'
 
 
 def process1():
     from task1 import main
 
     print("ID of process running process1: {}".format(os.getpid()))
-    main(START+1)
+    main(START+1, url)
 
 
 def process2():
     from task2 import main
 
     print("ID of process running process2: {}".format(os.getpid()))
-    main(START+2)
+    main(START+2, url)
 
 
 def process3():
     from task3 import main
 
     print("ID of process running process3: {}".format(os.getpid()))
-    main(START+3)
+    main(START+3, url)
 
 
 def process4():
     from task4 import main
 
     print("ID of process running process4: {}".format(os.getpid()))
-    main(START+4)
+    main(START+4, url)
 
 
 def process5():
     from task5 import main
 
     print("ID of process running process5: {}".format(os.getpid()))
-    main(START+5)
+    main(START+5, url)
 
 
 def process6():
     from task6 import main
 
     print("ID of process running process6: {}".format(os.getpid()))
-    main(START+6)
+    main(START+6, url)
 
 
 if __name__ == "__main__":

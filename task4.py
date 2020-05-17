@@ -44,8 +44,8 @@ async def communicate(websocket, path):
         # update local variables, connection broken.
 
 
-def main(port=9004):
-    start_server = websockets.serve(communicate, "localhost", port)
+def main(port=9004, url="localhost"):
+    start_server = websockets.serve(communicate, url, port)
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
 
