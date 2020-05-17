@@ -99,11 +99,17 @@ function getchannels() {
       node.setAttribute("style", "text-align: center;");
       node.setAttribute("class", "list-group-item");
       button.appendChild(node)
+      button.setAttribute("style", "display:block; cursor: pointer; border: none; width: 100%; background-color: #cde4f7; color: black; padding: 10px 24px; ")
+      button.setAttribute("onMouseOver", "this.style.color='#337AB7'")
+      button.setAttribute("onMouseOut", "this.style.color='black'")
       button.setAttribute('onclick', 'chonclick(this)')
       document.getElementById("channel-list").appendChild(button);
       getmsg(channellist[i])
       document.getElementById("msg-box").appendChild(content[channellist[i]]);
     }
+
+    
+
     setfocus(channellist[0])
     // content[channellist[0]].style.display = "block";
     // currentsel = channellist[0]
