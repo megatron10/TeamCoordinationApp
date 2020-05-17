@@ -35,11 +35,7 @@ function parseLoginResponse(response) {
 function login(username, password){
     console.log("[login] Making logging request");
     let conn;
-    try {
-        conn = getAuthenticatorConnection();
-    } catch (e) {
-        console.error("[login] Security Error", e);
-    }
+    conn = getAuthenticatorConnection();
 
     conn.onopen = function(ev) {
         console.log("[login] Connection established with authenticator");
@@ -55,8 +51,8 @@ function login(username, password){
         let response = parseLoginResponse(ev.data);
         // Case when credentials are wrong
         if(response['status'] == 0) {
-            ///TODO: Invalid credentials
             console.debug("[login] Invalid Credentials");
+            alert("Invalid username or password.\nPlease try again")
         }
         else {
             localStorage.setItem('uid', username);
@@ -75,6 +71,7 @@ function login(username, password){
     conn.onerror = function(ev) {
         console.error("[login] WebSocket error observed:", ev);
         console.error("[login] Server endpoint is down or inactive");
+        alert("Username or login incorrect")
     }
     
     conn.onclose = function(ev) {
