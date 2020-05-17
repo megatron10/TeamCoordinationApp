@@ -1,7 +1,5 @@
 # Team Coordination App
-
-TODO: One Paragraph of project description goes here
-
+To help plan and execute projects remotely. Several similar applications have been made that are used as references including Slack, Microsoft teams, etc...
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
