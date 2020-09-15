@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <script src="../scripts/util.js" defer></script>
+    <script src='../scripts/login.js' defer></script>
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <div id="login-box">
+        <div class="left">
+            <h1>Login</h1>
+            <input type="text" placeholder="Enter Username" id="usrname" required autofocus>
+            <input type="password" placeholder="Enter Password" id="pswrd" required>
+            <h5><a href="login.html">Forgot password?</a></h5>
+            <button id="login-btn" class="button1">Login</button><br /><br />
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+            <h5>New user? <a href="signup.html">Register here</a></h5>
+        </div>
+
+        <div class="rightback">
+            <div class="right">
+                <span class="loginwith">Continue with<br />social network<br />(Coming soon)</span>
+                <button class="social-signin facebook">Log in with facebook</button>
+                <button class="social-signin twitter">Log in with Twitter</button>
+                <button class="social-signin google">Log in with Google+</button>
+            </div>
+        </div>
+        <div class="or">OR</div>
+    </div>
+</body>
+
+</html>
